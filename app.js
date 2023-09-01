@@ -9,7 +9,7 @@ const flush = require('connect-flash');
 
 
 
-//expressjs app
+//expressjs 
 const app = express();
 
 
@@ -51,9 +51,9 @@ mongoose.connect(dbURI)
 //     })
 //     .catch((err) => {
 //         console.log(err);
-//     });
+//     })
 
-// });
+// })
 
 
 
