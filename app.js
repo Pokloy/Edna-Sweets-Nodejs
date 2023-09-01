@@ -9,7 +9,7 @@ const flush = require('connect-flash');
 
 
 
-//expressjs 
+//expressjs app
 const app = express();
 
 
@@ -34,6 +34,9 @@ mongoose.connect(dbURI)
     .catch((err) => console.log(err));
 
 
+
+
+    
 // Testing save data in Database using Http request
 // app.get('/add-order',(req, res) => {
 //     const order = new Order({
@@ -51,9 +54,9 @@ mongoose.connect(dbURI)
 //     })
 //     .catch((err) => {
 //         console.log(err);
-//     })
+//     });
 
-// })
+// });
 
 
 
