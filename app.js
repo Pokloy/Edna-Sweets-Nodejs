@@ -77,19 +77,22 @@ app.get('/',(req, res) => {
 
 
 app.get('/about', (req, res) => {
-    res.render('./about');
+    res.render('./customer-side/about');
 });
 
 
 app.get('/product', (req, res) => {
-    res.render('./product');
+    res.render('./customer-side/product');
 });
 
 
 app.get('/store', (req, res) => {
-    res.render('./store');
+    res.render('./customer-side/store');
 });
 
+app.get('/admin', (req, res) => {
+    res.render('./admin-side/dashboard');
+});
 
 
 
