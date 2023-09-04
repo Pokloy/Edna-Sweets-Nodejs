@@ -6,7 +6,7 @@ const { result } = require('lodash');
 const Order = require('./models/order');
 const session = require('express-session');
 const flush = require('connect-flash');
-
+const Adminrouteres = require('./routes/adminRoutes');
 
 
 //expressjs app
@@ -70,7 +70,7 @@ app.use(morgan('dev'));
 
 
 
-
+//customer side
 app.get('/',(req, res) => {
     res.render('./index');
 });
@@ -90,18 +90,28 @@ app.get('/store', (req, res) => {
     res.render('./customer-side/store');
 });
 
-app.get('/admin', (req, res) => {
+app.get('/', (req, res) => {
+    res.redirect('/order');
+});
+
+
+//admin side
+app.get('/', (req, res) => {
     res.render('./admin-side/dashboard');
 });
 
 
 
 app.get('/', (req, res) => {
-    res.redirect('/order');
+    res.redirect('/admin');
 });
 
 
 
+
+
+
 app.use('/order', Orderroutes);
+app.use('/admin', Adminrouteres);
 
 
