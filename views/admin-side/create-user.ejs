@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../admin-partials/head.ejs') %>
+
+    <body class="sb-nav-fixed">
+        <%- include('../admin-partials/nav.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('../admin-partials/sidebar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container-fluid px-4">
+                                <h1 class="mt-4">Add Users</h1>
+                                <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item active">Create new a user</li>
+                                </ol>
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+
+                                                <form>
+                                                    <div class="form-group">
+                                                      <label for="exampleInputEmail1" class="label-left">UserName</label>
+                                                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <label for="exampleInputPassword1" class="label-left">Password</label>
+                                                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlTextarea1" class="label-left">Security Question</label>
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1" class="label-left">Security Question Answer</label>
+                                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter security question answer">
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="exampleFormControlSelect1" class="label-left">Example select</label>
+                                                        <select class="form-control" id="exampleFormControlSelect1">
+                                                          <option>Select Status</option>
+                                                          <option>Activate</option>
+                                                          <option>Deactivate</option>
+                                                        </select>
+                                                      </div>
+                                                      <hr>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                  </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                
+
+
+
+                            </div>
+                        </main>
+                    </div>
+            </div>
+
+
+
+
+
+
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                crossorigin="anonymous"></script>
+            <script src="/admin-side/scripts.js"></script>
+    </body>
+
+</html>

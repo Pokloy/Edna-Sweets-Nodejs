@@ -100,6 +100,9 @@ app.get('/', (req, res) => {
     res.render('./admin-side/dashboard');
 });
 
+app.get('/log-in', (req, res) => {
+    res.render('./admin-side/log-in');
+});
 
 
 app.get('/', (req, res) => {

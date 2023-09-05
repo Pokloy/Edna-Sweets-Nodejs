@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 
-//GET coffee routes
+//GET order routes
 router.get('/', OrderController.order_index);
 
 
