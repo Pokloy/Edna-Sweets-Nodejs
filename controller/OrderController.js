@@ -4,6 +4,7 @@ const Order = require('../models/order');
 // GET order routes controller
 const order_index = (req,res) => {
     res.render('./customer-side/order', {message:req.flash('message')});
+    
 };
 
 

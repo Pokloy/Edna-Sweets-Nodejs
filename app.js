@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const Orderroutes = require('./routes/orderRoutes');
 const { result } = require('lodash');
 const Order = require('./models/order');
+const User = require('./models/users');
 const session = require('express-session');
 const flush = require('connect-flash');
 const Adminrouteres = require('./routes/adminRoutes');
@@ -38,17 +39,16 @@ mongoose.connect(dbURI)
 
     
 // Testing save data in Database using Http request
-// app.get('/add-order',(req, res) => {
-//     const order = new Order({
-//         name:'Alier',
-//         address:'Alier',
-//         pnumber:'Alier',
-//         product:'Alier',
-//         quantity:'Alier',
-//         price:'Alier'
+// app.get('/add-user',(req, res) => {
+//     const user = new User({
+//         username:'asdasd',
+//         password:'2221',
+//         squestion:'asdasd',
+//         sanswer:'asdasd',
+//         status:'asdasd'
 //     });
 
-//     order.save()
+//     user.save()
 //     .then((result) => {
 //         res.send(result)
 //     })

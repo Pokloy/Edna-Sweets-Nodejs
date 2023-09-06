@@ -19,26 +19,26 @@
                                         <div class="card mb-4">
                                             <div class="card-header">
 
-                                                <form>
+                                                <form action="/admin/users/create" method="post">
                                                     <div class="form-group">
-                                                      <label for="exampleInputEmail1" class="label-left">UserName</label>
-                                                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter username">
+                                                      <label for="username" class="label-left">UserName</label>
+                                                      <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter username">
                                                     </div>
                                                     <div class="form-group">
-                                                      <label for="exampleInputPassword1" class="label-left">Password</label>
-                                                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                      <label for="password" class="label-left">Password</label>
+                                                      <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleFormControlTextarea1" class="label-left">Security Question</label>
-                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                        <label for="squestion" class="label-left">Security Question</label>
+                                                        <textarea class="form-control" id="squestion" name="squestion" rows="3"></textarea>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="exampleInputPassword1" class="label-left">Security Question Answer</label>
-                                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter security question answer">
+                                                        <label for="sanswer" class="label-left">Security Question Answer</label>
+                                                        <input type="password" class="form-control" id="sanswer" name="sanswer" placeholder="Enter security question answer">
                                                       </div>
                                                       <div class="form-group">
-                                                        <label for="exampleFormControlSelect1" class="label-left">Example select</label>
-                                                        <select class="form-control" id="exampleFormControlSelect1">
+                                                        <label for="status" class="label-left">Status</label>
+                                                        <select class="form-control" id="status" name="status">
                                                           <option>Select Status</option>
                                                           <option>Activate</option>
                                                           <option>Deactivate</option>

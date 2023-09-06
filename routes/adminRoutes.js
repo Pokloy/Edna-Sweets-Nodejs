@@ -20,8 +20,14 @@ router.delete('/:id',AdminController.admin_delete);
 router.get('/users',AdminController.users_admin);
 
 
-//GET create new user
-router.get('/users/create', AdminController.create_user);
+//DELETE user admin routes
+router.delete('/:id',AdminController.user_delete);
 
+
+//GET create new user
+router.get('/users/create', AdminController.create_user_get);
+
+//POST create new user
+router.post('/users/create', AdminController.create_user_post);
 
 module.exports = router;
