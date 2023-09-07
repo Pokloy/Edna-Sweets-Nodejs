@@ -19,15 +19,21 @@ router.delete('/:id',AdminController.admin_delete);
 //GET user admin routes
 router.get('/users',AdminController.users_admin);
 
-
-//DELETE user admin routes
-router.delete('/:id',AdminController.user_delete);
-
-
 //GET create new user
 router.get('/users/create', AdminController.create_user_get);
 
 //POST create new user
 router.post('/users/create', AdminController.create_user_post);
+
+// //GET single view users routes
+// router.get('/users/:id', AdminController.singleview_user);
+
+
+//DELETE user admin routes
+router.delete('/users/:id',AdminController.user_delete);
+
+
+
+
 
 module.exports = router;

@@ -95,6 +95,7 @@ app.get('/', (req, res) => {
 });
 
 
+
 //admin side
 app.get('/', (req, res) => {
     res.render('./admin-side/dashboard');
@@ -108,9 +109,6 @@ app.get('/log-in', (req, res) => {
 app.get('/', (req, res) => {
     res.redirect('/admin');
 });
-
-
-
 
 
 

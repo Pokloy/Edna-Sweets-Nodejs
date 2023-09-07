@@ -15,12 +15,12 @@
                                 </h2>
                                 <% if(message.length> 0){ %>
                                     <div class="alert alert-success">
-                                        <%= message %>
+                                        Notification Area: <%= message %>
                                     </div>
 
                                     <% } else { %>
-                                        <div class="alert alert-danger">
-                                            <%= message %>
+                                        <div class="alert alert-warning">
+                                            Notification Area: <%= message %>
                                         </div>
                                         <% } %>
                                             <form action="/order" method="POST">

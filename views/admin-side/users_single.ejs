@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../admin-partials/head.ejs') %>
+
+    <body class="sb-nav-fixed">
+        <%- include('../admin-partials/nav.ejs') %>
+            <div id="layoutSidenav">
+                <%- include('../admin-partials/sidebar.ejs') %>
+                    <div id="layoutSidenav_content">
+                        <main>
+                            <div class="container-fluid px-4">
+                                <h1 class="mt-4">Users</h1>
+                                <ol class="breadcrumb mb-4">
+                                    <li class="breadcrumb-item active">For Modify and Delete users just click the
+                                        corresponding table row</li>
+                                </ol>
+
+
+
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card mb-4">
+                                            <div class="card-header">
+                                                <i class="fa-solid fa-user"></i>
+                                                User Info
+                                            </div>
+                                            <div class="card-body">
+
+
+
+                                                <h2>
+                                                    <%= user._id %>
+                                                </h2>
+                                                <div>
+                                                    <p>
+                                                        <%= user.username %>
+                                                    </p>
+                                                    <p>
+                                                        <%= user.password %>
+                                                    </p>
+                                                    <p>
+                                                        <%= user.squestion %>
+                                                    </p>
+                                                    <p>
+                                                        <%= user.sanswer %>
+                                                    </p>
+                                                    <p>
+                                                        <%= user.status %>
+                                                    </p>
+                                                </div>
+                                                <a class="delete" data-doc="<%= blog._id %>"><button type="submit" class="btn btn-danger">Delete</button></a>
+                                                <a href="admin/users" data-doc="<%= user._id %>"><button type="submit" class="btn btn-success">Back</button></a>
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </main>
+                    </div>
+            </div>
+
+
+            <script>
+                const trashcan = document.querySelector('a.delete');
+
+                trashcan.addEventListener('click', (e) => {
+                    const endpoint = `/users/${trashcan.dataset.doc}`;
+
+                    fetch(endpoint, {
+                        method: 'DELETE'
+                    })
+                        .then((response) => response.json())
+                        .then((data) => window.location.href = data.redirect)
+                        .catch(err => console.log(err));
+                })
+            </script>
+
+
+
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+                crossorigin="anonymous"></script>
+            <script src="/admin-side/scripts.js"></script>
+    </body>
+
+</html>
