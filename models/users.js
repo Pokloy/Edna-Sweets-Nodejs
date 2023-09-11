@@ -29,7 +29,10 @@ const UserSchema = new Schema({
     }
 }, {timestamps:true});
 
-//Hash the password
+
+
+
+//Hash the password and sanswer in create.
 UserSchema.pre('save', async function(next) {
     try {
         
@@ -46,6 +49,32 @@ UserSchema.pre('save', async function(next) {
         return next(error);
     }
 });
+
+
+
+//Hash the password and sanswer in update.
+UserSchema.pre('findOneAndUpdate', async function (next) {
+    try {
+        const update = this._update; 
+        if (update.password) {
+            const hashedPassword = await bcrypt.hash(update.password, 2);
+            update.password = hashedPassword;
+        }
+        if (update.sanswer) {
+            const hashedAnswer = await bcrypt.hash(update.sanswer, 2);
+            update.sanswer = hashedAnswer;
+        }
+        return next();
+    } catch (error) {
+        return next(error);
+    }
+});
+
+
+
+
+
+
 
 
 

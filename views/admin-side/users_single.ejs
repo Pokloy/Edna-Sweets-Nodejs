@@ -27,31 +27,45 @@
                                             <div class="card-body">
 
 
-
-                                                <h2>
-                                                    <%= user._id %>
-                                                </h2>
-                                                <div>
-                                                    <p>
-                                                        <%= user.username %>
-                                                    </p>
-                                                    <p>
-                                                        <%= user.password %>
-                                                    </p>
-                                                    <p>
-                                                        <%= user.squestion %>
-                                                    </p>
-                                                    <p>
-                                                        <%= user.sanswer %>
-                                                    </p>
-                                                    <p>
-                                                        <%= user.status %>
-                                                    </p>
-                                                </div>
-                                                <a class="delete" data-doc="<%= blog._id %>"><button type="submit" class="btn btn-danger">Delete</button></a>
-                                                <a href="admin/users" data-doc="<%= user._id %>"><button type="submit" class="btn btn-success">Back</button></a>
-
-
+                                                <form action="/admin/users/<%= users._id %>" method="post">
+                                                    <% if(message.length> 0){ %>
+                                                        <div class="alert alert-success">
+                                                            Notification Area: <%= message %>
+                                                        </div>
+                    
+                                                        <% } else { %>
+                                                            <div class="alert alert-warning">
+                                                                Notification Area: <%= message %> 
+                                                            </div>
+                                                            <% } %>
+                                                    <div class="form-group">
+                                                      <label for="username" class="label-left">UserName</label>
+                                                      <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" value="<%= users.username %>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                      <label for="password" class="label-left">Password</label>
+                                                      <input type="password" class="form-control" id="password" name="password" value="<%= users.password %>">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="squestion" class="label-left">Security Question</label>
+                                                        <textarea class="form-control" id="squestion" name="squestion" rows="3" ><%= users.squestion %></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="sanswer" class="label-left">Security Question Answer</label>
+                                                        <input type="password" class="form-control" id="sanswer" name="sanswer" value="<%= users.sanswer %>">
+                                                      </div>
+                                                      <div class="form-group">
+                                                        <label for="status" class="label-left">Status</label>
+                                                        <select class="form-control" id="status" name="status">
+                                                          <option><%= users.status %></option>
+                                                          <option>Activate</option>
+                                                          <option>Deactivate</option>
+                                                        </select>
+                                                      </div>
+                                                      <hr>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                  </form>
+                                                
 
 
 
@@ -66,21 +80,6 @@
                     </div>
             </div>
 
-
-            <script>
-                const trashcan = document.querySelector('a.delete');
-
-                trashcan.addEventListener('click', (e) => {
-                    const endpoint = `/users/${trashcan.dataset.doc}`;
-
-                    fetch(endpoint, {
-                        method: 'DELETE'
-                    })
-                        .then((response) => response.json())
-                        .then((data) => window.location.href = data.redirect)
-                        .catch(err => console.log(err));
-                })
-            </script>
 
 
 

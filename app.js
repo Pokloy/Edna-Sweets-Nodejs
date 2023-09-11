@@ -8,6 +8,14 @@ const User = require('./models/users');
 const session = require('express-session');
 const flush = require('connect-flash');
 const Adminrouteres = require('./routes/adminRoutes');
+const passport = require('passport');
+const flash = require('express-flash');
+const methodOverride = require('method-override');
+
+
+const initializePassport = require('./passport-config');
+
+initializePassport(passport);
 
 
 //expressjs app
@@ -20,11 +28,15 @@ app.set('view engine', 'ejs');
 
 //register session 
 app.use(session({
-    secret:'secret',
-    cookie:{maxAge: 60000},
-    resave:false,
-    saveUninitialized:false
+    secret: 'secret',
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(methodOverride('_method'));
+app.use(flash());
 app.use(flush());
 
 
@@ -37,7 +49,7 @@ mongoose.connect(dbURI)
 
 
 
-    
+
 // Testing save data in Database using Http request
 // app.get('/add-user',(req, res) => {
 //     const user = new User({
@@ -65,13 +77,13 @@ app.listen(3000);
 
 //directing all resources to public folder using morgan app
 app.use(express.static('public'));
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 
 
 //customer side
-app.get('/',(req, res) => {
+app.get('/', (req, res) => {
     res.render('./index');
 });
 
@@ -97,12 +109,32 @@ app.get('/', (req, res) => {
 
 
 //admin side
-app.get('/', (req, res) => {
-    res.render('./admin-side/dashboard');
+
+
+app.get('/log-in', checkNotAuthenticated ,(req, res) => {
+    res.render('./admin-side/log-in');
 });
 
-app.get('/log-in', (req, res) => {
-    res.render('./admin-side/log-in');
+
+app.post('/log-in', checkNotAuthenticated, passport.authenticate('local', {
+    successRedirect: '/admin',
+    failureRedirect: '/log-in',
+    failureFlash: true
+}))
+
+//Log-in
+app.delete("/logout", (req, res) => {
+    req.logOut(function (err) {
+      if (err) {
+        return next(err);
+      }
+      res.redirect("/log-in");
+    });
+  });
+
+
+app.get('/', (req, res) => {
+    res.render('./admin-side/dashboard');
 });
 
 
@@ -113,6 +145,24 @@ app.get('/', (req, res) => {
 
 
 app.use('/order', Orderroutes);
-app.use('/admin', Adminrouteres);
+app.use('/admin', checkAuthenticated ,Adminrouteres);
+
+
+//for admin protection in routing. User that has not admin authenticated will routed to log-in
+function checkAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next()
+    }
+
+    res.redirect('/log-in')
+}
+
+function checkNotAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) {
+      return res.redirect('/admin')
+    }
+    next()
+  }
+
 
 

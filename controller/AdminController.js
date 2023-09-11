@@ -35,7 +35,7 @@ const admin_delete = (req, res) => {
 //users controllers
 //GET admin users side
 const users_admin = (req, res) => {
-    User.find().sort({ createdAt: -1 })
+    User.find()
         .then((result) => {
             res.render('./admin-side/users',  {
                 users: result
@@ -71,18 +71,52 @@ const create_user_post = (req, res) => {
 }
 
 
-// //GET single view users
-// const singleview_user = (req,res) => {
-//     const id = req.params.id;
+//GET single view users
+const singleview_user = (req,res) => {
+    const id = req.params.id;
 
-//     User.findById(id)
-//     .then(result => {
-//         res.render('admin/users');
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
-// }
+    User.findById(id)
+    .then(result => {
+        res.render('./admin-side/users_single', {
+            users:result,
+            message:req.flash('message')
+        })
+    })
+    .catch(err => {
+        console.log(err);
+    });
+}
+
+
+//POST update user
+const user_update = (req, res) => {
+    const id = req.params.id;
+    const updatedUserData = {
+        username: req.body.username,
+        password: req.body.password,
+        squestion: req.body.squestion,
+        sanswer: req.body.sanswer,
+        status: req.body.status,
+    };
+
+    User.findByIdAndUpdate(id, updatedUserData, { new: true })
+        .then(updatedUser => {
+            if (!updatedUser) {
+                console.log('No user found');
+                req.flash('message','Failed to Update due to server error');
+            } else {
+                req.flash('message','User Updated');
+                res.render('./admin-side/users_single', { 
+                    users: updatedUser,
+                    message:req.flash('message')
+                 });
+            }
+        })
+        .catch(err => {
+            console.log('Error updating user:', err);
+            res.status(500).send('Internal Server Error');
+        });
+};
 
 
 
@@ -108,7 +142,9 @@ module.exports = {
     admin_index,
     admin_delete,
     users_admin,
-    user_delete,
     create_user_get,
-    create_user_post
+    create_user_post,
+    singleview_user,
+    user_update,
+    user_delete
 }
